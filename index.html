@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linagle | The Future of Medical Data</title>
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Use a more reliable script tag to import Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.min.js"></script>
     <style>
         body {
@@ -64,11 +68,11 @@
 
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Header -->
     <header class="bg-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">
-                Lina<span class="font-light text-gray-400">gle</span>
+            
+            <a href="#">
+                <img src="/logo.png" alt="Linagle Logo" class="h-8 w-auto">
             </a>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#technology" class="nav-link text-gray-300 hover:text-white">Technology</a>
@@ -82,7 +86,6 @@
                 </svg>
             </button>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
             <a href="#technology" class="block py-2 text-gray-300 hover:text-white">Technology</a>
             <a href="#applications" class="block py-2 text-gray-300 hover:text-white">Applications</a>
@@ -91,9 +94,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
         <section class="relative py-24 md:py-40 text-center overflow-hidden hero-glow">
             <div class="container mx-auto px-6 relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 tracking-tight">The Generative Engine for Medical AI</h1>
@@ -103,7 +104,6 @@
             </div>
         </section>
 
-        <!-- Technology Section -->
         <section id="technology" class="py-24 animated-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -111,19 +111,16 @@
                     <p class="text-gray-400 mt-3 max-w-2xl mx-auto">Our core technology models complex biological systems to generate data that is statistically identical to real-world scans, without a single link to patient identity.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
                     <div class="bg-gray-900/50 p-8 rounded-lg border border-gray-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                         <h3 class="text-xl font-semibold text-white mb-2">Zero-Risk Anonymity</h3>
                         <p class="text-gray-400">Eradicate privacy concerns. Our generative models are trained without storing patient data, ensuring full HIPAA and GDPR compliance from the ground up.</p>
                     </div>
-                    <!-- Feature 2 -->
                     <div class="bg-gray-900/50 p-8 rounded-lg border border-gray-800">
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3v3m-3-3v3m-3-3v3M3 14h18M3 10h18M3 6h18" /></svg>
                         <h3 class="text-xl font-semibold text-white mb-2">Infinite Datasets</h3>
                         <p class="text-gray-400">Move beyond data scarcity. Generate perfectly balanced, diverse datasets on-demand to train away algorithmic bias and conquer rare disease challenges.</p>
                     </div>
-                    <!-- Feature 3 -->
                     <div class="bg-gray-900/50 p-8 rounded-lg border border-gray-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                         <h3 class="text-xl font-semibold text-white mb-2">Granular Control</h3>
@@ -133,7 +130,6 @@
             </div>
         </section>
 
-        <!-- Applications Section -->
         <section id="applications" class="py-24 bg-gray-900/30 animated-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -141,7 +137,6 @@
                     <p class="text-gray-400 mt-3 max-w-2xl mx-auto">From algorithm development to device validation, synthetic data is the catalyst for progress.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Application Card 1 -->
                     <div class="bg-black rounded-lg overflow-hidden border border-gray-800 group">
                         <div class="h-56 w-full">
                             <canvas id="canvas1"></canvas>
@@ -151,7 +146,6 @@
                             <p class="text-gray-400">Generate synthetic MRI & CT scans of the brain to train diagnostic AI for tumors, strokes, and neurodegenerative diseases.</p>
                         </div>
                     </div>
-                    <!-- Application Card 2 -->
                     <div class="bg-black rounded-lg overflow-hidden border border-gray-800 group">
                         <div class="h-56 w-full">
                             <canvas id="canvas2"></canvas>
@@ -161,7 +155,6 @@
                             <p class="text-gray-400">Create realistic chest X-rays and CT scans to improve algorithms for detecting lung nodules and cardiovascular anomalies.</p>
                         </div>
                     </div>
-                    <!-- Application Card 3 -->
                     <div class="bg-black rounded-lg overflow-hidden border border-gray-800 group">
                         <div class="h-56 w-full">
                             <canvas id="canvas3"></canvas>
@@ -175,7 +168,6 @@
             </div>
         </section>
 
-        <!-- About Us Section -->
         <section id="about" class="py-24 animated-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Our Mission</h2>
@@ -185,7 +177,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="py-24 bg-gray-900/30 animated-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Define the Future of Medicine</h2>
@@ -195,7 +186,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="border-t border-gray-800">
         <div class="container mx-auto px-6 py-8 text-center text-gray-500">
             <p>&copy; 2025 Linagle. All Rights Reserved.</p>
@@ -226,7 +216,6 @@
         });
     </script>
     
-    <!-- Three.js animation script -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -399,6 +388,3 @@
     </script>
 </body>
 </html>
-
-
-
