@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Use a more reliable script tag to import Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.min.js"></script>
+
+    <!-- Favicon (only logo, no text) -->
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Linagle/linagle.github.io/main/03.png" />
+
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -65,10 +70,12 @@
     <canvas id="bg-canvas"></canvas>
 
     <!-- Header -->
-    <header class="bg-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">
-                Lina<span class="font-light text-gray-400">gle</span>
+     <!-- Header -->
+  <header>
+    <a href="#" class="logo">
+      <img src="https://raw.githubusercontent.com/Linagle/linagle.github.io/main/03.png" alt="Linagle Logo" />
+      Linagle
+        
             </a>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#technology" class="nav-link text-gray-300 hover:text-white">Technology</a>
@@ -399,4 +406,5 @@
     </script>
 </body>
 </html>
+
 
