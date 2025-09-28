@@ -1,136 +1,402 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linagle – Synthetic Data Intelligence</title>
-
-  <!-- Favicon (only logo, no text) -->
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Linagle/linagle.github.io/main/03.png" />
-
-  <style>
-    /* Reset and base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      background: #ffffff;
-      color: #111;
-      line-height: 1.6;
-    }
-
-    /* Header */
-    header {
-      width: 100%;
-      background: #000;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 7%;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    header .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    header .logo img {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    nav ul li a:hover {
-      color: #00e5ff;
-    }
-
-    /* Hero Section (Optional placeholder) */
-    .hero {
-      text-align: center;
-      padding: 100px 10px;
-      background: linear-gradient(to bottom, #000, #111);
-      color: #fff;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: #ddd;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 14px;
-        margin-top: 10px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linagle | The Future of Medical Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Use a more reliable script tag to import Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #E5E7EB;
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(200, 200, 255, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+        .animated-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -10; /* Places it behind all other content */
+        }
+    </style>
 </head>
-<body>
-  <!-- Header -->
-  <header>
-    <a href="#" class="logo">
-      <img src="https://raw.githubusercontent.com/Linagle/linagle.github.io/main/03.png" alt="Linagle Logo" />
-      Linagle
-    </a>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Platform</a></li>
-        <li><a href="#">Solutions</a></li>
-        <li><a href="#">Docs</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="bg-black text-gray-200">
 
-  <!-- Hero (Optional demo section) -->
-  <section class="hero">
-    <h1>Welcome to Linagle</h1>
-    <p>The next-generation synthetic data intelligence platform built for all industries.</p>
-  </section>
+    <canvas id="bg-canvas"></canvas>
 
+    <!-- Header -->
+    <header class="bg-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">
+                Lina<span class="font-light text-gray-400">gle</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#technology" class="nav-link text-gray-300 hover:text-white">Technology</a>
+                <a href="#applications" class="nav-link text-gray-300 hover:text-white">Applications</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
+                <a href="#contact" class="bg-white text-black font-medium py-2 px-4 rounded-md transition-all duration-300 btn-glow">Request a Demo</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#technology" class="block py-2 text-gray-300 hover:text-white">Technology</a>
+            <a href="#applications" class="block py-2 text-gray-300 hover:text-white">Applications</a>
+            <a href="#about" class="block py-2 text-gray-300 hover:text-white">About Us</a>
+            <a href="#contact" class="block bg-white text-black font-medium mt-2 py-2 px-4 rounded-md transition-colors text-center">Request a Demo</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative py-24 md:py-40 text-center overflow-hidden hero-glow">
+            <div class="container mx-auto px-6 relative z-10">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 tracking-tight">The Generative Engine for Medical AI</h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                    Create limitless streams of synthetic medical data—perfectly anonymized, flawlessly accurate, and ready for the next generation of discovery.
+                </p>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="technology" class="py-24 animated-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Unprecedented Realism, Absolute Privacy</h2>
+                    <p class="text-gray-400 mt-3 max-w-2xl mx-auto">Our core technology models complex biological systems to generate data that is statistically identical to real-world scans, without a single link to patient identity.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-gray-900/50 p-8 rounded-lg border border-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Zero-Risk Anonymity</h3>
+                        <p class="text-gray-400">Eradicate privacy concerns. Our generative models are trained without storing patient data, ensuring full HIPAA and GDPR compliance from the ground up.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-gray-900/50 p-8 rounded-lg border border-gray-800">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3v3m-3-3v3m-3-3v3M3 14h18M3 10h18M3 6h18" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Infinite Datasets</h3>
+                        <p class="text-gray-400">Move beyond data scarcity. Generate perfectly balanced, diverse datasets on-demand to train away algorithmic bias and conquer rare disease challenges.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-gray-900/50 p-8 rounded-lg border border-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Granular Control</h3>
+                        <p class="text-gray-400">Define every parameter. Specify pathologies, control noise levels, and simulate different scanner outputs to create data for any research or development need.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications" class="py-24 bg-gray-900/30 animated-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Accelerating Medical Innovation</h2>
+                    <p class="text-gray-400 mt-3 max-w-2xl mx-auto">From algorithm development to device validation, synthetic data is the catalyst for progress.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Application Card 1 -->
+                    <div class="bg-black rounded-lg overflow-hidden border border-gray-800 group">
+                        <div class="h-56 w-full">
+                            <canvas id="canvas1"></canvas>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Neurological Modeling</h3>
+                            <p class="text-gray-400">Generate synthetic MRI & CT scans of the brain to train diagnostic AI for tumors, strokes, and neurodegenerative diseases.</p>
+                        </div>
+                    </div>
+                    <!-- Application Card 2 -->
+                    <div class="bg-black rounded-lg overflow-hidden border border-gray-800 group">
+                        <div class="h-56 w-full">
+                            <canvas id="canvas2"></canvas>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Cardiothoracic Analysis</h3>
+                            <p class="text-gray-400">Create realistic chest X-rays and CT scans to improve algorithms for detecting lung nodules and cardiovascular anomalies.</p>
+                        </div>
+                    </div>
+                    <!-- Application Card 3 -->
+                    <div class="bg-black rounded-lg overflow-hidden border border-gray-800 group">
+                        <div class="h-56 w-full">
+                            <canvas id="canvas3"></canvas>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Genomic Data Simulation</h3>
+                            <p class="text-gray-400">Simulate vast genomic datasets to power research in personalized medicine and drug discovery without patient privacy risks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-24 animated-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Our Mission</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mt-4">
+                    Our mission is to build the foundational data layer for the future of medicine. We empower researchers, clinicians, and engineers with the synthetic data they need to create life-saving technologies safely, ethically, and efficiently.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900/30 animated-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Define the Future of Medicine</h2>
+                <p class="text-gray-400 mt-2 mb-8 max-w-2xl mx-auto">Partner with us to unlock new possibilities in your research. Contact our team to discuss your data needs and schedule a private demo.</p>
+                <a href="mailto:contact@linagle.com" class="bg-white text-black font-bold py-3 px-8 rounded-md text-lg transition-all duration-300 transform hover:scale-105 btn-glow">Get In Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Linagle. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll animations
+        const animatedSections = document.querySelectorAll('.animated-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedSections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+    
+    <!-- Three.js animation script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- BACKGROUND ANIMATION ---
+        function setupBackgroundAnimation() {
+            const canvas = document.getElementById('bg-canvas');
+            if (!canvas) return;
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const particlesCount = 5000;
+            const posArray = new Float32Array(particlesCount * 3);
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 100;
+            }
+            const particlesGeometry = new THREE.BufferGeometry();
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const particlesMaterial = new THREE.PointsMaterial({ size: 0.025, color: 0xffffff, transparent: true, opacity: 0.7 });
+            const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particleMesh);
+
+            camera.position.z = 50;
+
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            const clock = new THREE.Clock();
+            function animate() {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+                particleMesh.rotation.y = elapsedTime * 0.05;
+                camera.position.x += (mouseX * 5 - camera.position.x) * 0.02;
+                camera.position.y += (mouseY * 5 - camera.position.y) * 0.02;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            });
+        }
+
+        // --- MEDICAL MODEL ANIMATIONS ---
+        function setupAnimation(canvas, shapeType) {
+            if (!canvas) {
+                console.error("Canvas element not found for animation.");
+                return;
+            }
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            let animatedObject;
+
+            switch(shapeType) {
+                case 'brain':
+                    const brainGeometry = new THREE.SphereGeometry(1.4, 32, 32);
+                    const positionAttribute = brainGeometry.getAttribute('position');
+                    const vertices = [];
+                    const tempVertex = new THREE.Vector3();
+
+                    for (let i = 0; i < positionAttribute.count; i++) {
+                        tempVertex.fromBufferAttribute(positionAttribute, i);
+                        const noise = 0.15 * Math.sin(tempVertex.x * 6) * Math.cos(tempVertex.y * 8) * Math.sin(tempVertex.z * 7);
+                        tempVertex.addScaledVector(tempVertex.clone().normalize(), noise);
+                        vertices.push(tempVertex.x, tempVertex.y, tempVertex.z);
+                    }
+                    brainGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                    brainGeometry.computeVertexNormals();
+                    const brainMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+                    animatedObject = new THREE.Mesh(brainGeometry, brainMaterial);
+                    break;
+
+                case 'chest':
+                    const particlesGeometry = new THREE.BufferGeometry();
+                    const particlesCount = 4000;
+                    const posArray = new Float32Array(particlesCount * 3);
+                    for (let i = 0; i < particlesCount; i++) {
+                        const isLeftLobe = Math.random() > 0.5;
+                        const lobeX = isLeftLobe ? -1.2 : 1.2;
+                        const lobeY = -0.2;
+                        
+                        let x, y, z;
+                        do {
+                            x = (Math.random() - 0.5) * 2.5;
+                            y = (Math.random() - 0.5) * 4;
+                            z = (Math.random() - 0.5) * 2;
+                        } while (Math.pow((x) / 1.2, 2) + Math.pow((y) / 2, 2) > 1);
+                        
+                        posArray[i * 3 + 0] = x + lobeX;
+                        posArray[i * 3 + 1] = y + lobeY;
+                        posArray[i * 3 + 2] = z;
+                    }
+                    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                    const particlesMaterial = new THREE.PointsMaterial({ size: 0.015, color: 0xffffff });
+                    animatedObject = new THREE.Points(particlesGeometry, particlesMaterial);
+                    break;
+
+                case 'dna':
+                    animatedObject = new THREE.Group();
+                    const numPairs = 20;
+                    const radius = 1;
+                    const height = 4;
+                    const sphereRadius = 0.12;
+                    const tubeRadius = 0.04;
+
+                    const sphereGeom = new THREE.SphereGeometry(sphereRadius, 16, 16);
+                    const tubeGeom = new THREE.CylinderGeometry(tubeRadius, tubeRadius, radius * 2);
+                    const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+                    for (let i = 0; i < numPairs; i++) {
+                        const y = -height/2 + (height / numPairs) * i;
+                        const angle = 0.5 * i;
+
+                        const sphere1 = new THREE.Mesh(sphereGeom, material);
+                        sphere1.position.set(radius * Math.cos(angle), y, radius * Math.sin(angle));
+
+                        const sphere2 = new THREE.Mesh(sphereGeom, material);
+                        sphere2.position.set(radius * Math.cos(angle + Math.PI), y, radius * Math.sin(angle + Math.PI));
+
+                        const tube = new THREE.Mesh(tubeGeom, material);
+                        tube.position.y = y;
+                        tube.rotation.x = Math.PI / 2;
+                        tube.rotation.z = angle;
+
+                        animatedObject.add(sphere1, sphere2, tube);
+                    }
+                    break;
+            }
+            
+            scene.add(animatedObject);
+            camera.position.z = 5;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (animatedObject) {
+                    animatedObject.rotation.y += 0.003;
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', () => {
+                const parent = canvas.parentElement;
+                if (parent) {
+                    const width = parent.clientWidth;
+                    const height = parent.clientHeight;
+                    renderer.setSize(width, height);
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                }
+            });
+        }
+        
+        setupBackgroundAnimation();
+        setupAnimation(document.getElementById('canvas1'), 'brain');
+        setupAnimation(document.getElementById('canvas2'), 'chest');
+        setupAnimation(document.getElementById('canvas3'), 'dna');
+    });
+    </script>
 </body>
 </html>
+
